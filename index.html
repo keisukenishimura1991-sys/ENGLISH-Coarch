@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>英会話学習コーチング</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>英会話学習コーチング</h1>
+    <div class="header-actions">
+      <button id="export-btn" class="btn btn-ghost">エクスポート</button>
+      <label class="btn btn-ghost file-label">
+        インポート
+        <input type="file" id="import-input" accept="application/json" hidden />
+      </label>
+    </div>
+  </header>
+
+  <nav class="tab-nav">
+    <button class="tab-btn active" data-tab="dashboard">ダッシュボード</button>
+    <button class="tab-btn" data-tab="vocab">単語帳</button>
+    <button class="tab-btn" data-tab="articles">WSJ記事</button>
+    <button class="tab-btn" data-tab="templates">コーチングテンプレート</button>
+  </nav>
+
+  <main id="view"></main>
+
+  <script src="js/utils.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/srs.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/vocab.js"></script>
+  <script src="js/articles.js"></script>
+  <script src="js/templates.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
