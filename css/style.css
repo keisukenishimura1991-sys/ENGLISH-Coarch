@@ -296,6 +296,21 @@ main#view {
   font-style: italic;
 }
 
+.speak-btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+  padding: 2px 4px;
+  vertical-align: middle;
+  border-radius: 6px;
+}
+
+.speak-btn:hover {
+  background: var(--bg);
+}
+
 .review-actions {
   display: flex;
   gap: 12px;

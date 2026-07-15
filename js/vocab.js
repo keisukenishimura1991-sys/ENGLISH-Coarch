@@ -31,12 +31,21 @@ App.Vocab = (() => {
       <div class="flashcard-wrap">
         <div class="progress-text">${reviewIndex + 1} / ${cards.length}</div>
         <div class="flashcard ${showAnswer ? 'flipped' : ''}" id="flashcard">
-          <div class="flashcard-term">${App.escapeHtml(card.term)}</div>
+          <div class="flashcard-term">
+            ${App.escapeHtml(card.term)}
+            <button type="button" class="speak-btn" data-speak="${App.escapeHtml(card.term)}" aria-label="発音を聞く">🔊</button>
+          </div>
           ${
             showAnswer
               ? `
             <div class="flashcard-meaning">${App.escapeHtml(card.meaning)}</div>
-            ${card.example ? `<div class="flashcard-example">"${App.escapeHtml(card.example)}"</div>` : ''}
+            ${
+              card.example
+                ? `<div class="flashcard-example">"${App.escapeHtml(card.example)}"
+                    <button type="button" class="speak-btn" data-speak="${App.escapeHtml(card.example)}" aria-label="例文の発音を聞く">🔊</button>
+                  </div>`
+                : ''
+            }
           `
               : `<div class="flashcard-hint">クリックして答えを表示</div>`
           }
@@ -87,7 +96,7 @@ App.Vocab = (() => {
       .map(
         (c) => `
         <tr>
-          <td>${App.escapeHtml(c.term)}</td>
+          <td>${App.escapeHtml(c.term)} <button type="button" class="speak-btn" data-speak="${App.escapeHtml(c.term)}" aria-label="発音を聞く">🔊</button></td>
           <td>${App.escapeHtml(c.meaning)}</td>
           <td>Box ${c.box}${App.SRS.isMastered(c) ? ' ✅' : ''}</td>
           <td>${c.dueDate}</td>
@@ -117,6 +126,13 @@ App.Vocab = (() => {
         reviewIndex = 0;
         showAnswer = false;
         App.render();
+      });
+    });
+
+    document.querySelectorAll('[data-speak]').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        App.speak(btn.dataset.speak);
       });
     });
 
